@@ -1,8 +1,8 @@
 package com.example.callcenter1.controller;
 
-import com.example.callcenter1.model.User;
+import com.example.callcenter1.model.Operator;
 import com.example.callcenter1.model.Role;
-import com.example.callcenter1.repository.UserRepository;
+import com.example.callcenter1.repository.OperatorRepository;
 import com.example.callcenter1.repository.RoleRepository;
 import com.example.callcenter1.security.JwtUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +21,7 @@ public class AuthController {
     @Autowired
     private AuthenticationManager authenticationManager;
     @Autowired
-    private UserRepository userRepository;
+    private OperatorRepository operatorRepository;
     @Autowired
     private RoleRepository roleRepository;
     @Autowired
@@ -30,51 +30,49 @@ public class AuthController {
     private JwtUtil jwtUtil;
 
     @PostMapping("/register")
-    public Map<String, Object> register(@RequestBody Map<String, String> userMap) {
-        String userName = userMap.get("user_name");
-        String userPassword = userMap.get("user_password");
-        Integer roleId = Integer.valueOf(userMap.getOrDefault("role_id", "1"));// role_id giriş ekranından kaldırılacak ve role_id değeri veritabanından çekilecek.
-        if (userRepository.findByUserName(userName).isPresent()) {
+    public Map<String, Object> register(@RequestBody Map<String, String> operatorMap) {
+        String operatorName = operatorMap.get("operator_name");
+        String operatorPassword = operatorMap.get("operator_password");
+        Integer roleId = Integer.valueOf(operatorMap.getOrDefault("role_id", "1"));
+        if (operatorRepository.findByOperatorName(operatorName).isPresent()) {
             Map<String, Object> resp = new HashMap<>();
             resp.put("status", "error");
-            resp.put("message", "Username already exists");
+            resp.put("message", "Operator name already exists");
             return resp;
         }
-        User user = new User();
-        user.setUserName(userName);
-        user.setUserPassword(passwordEncoder.encode(userPassword));
-        user.setRoleId(roleId);
-        user.setUserSurname("");
-        user.setUserPhoneNumber("");
-        user.setServiceId(0);
-        user.setCustomerId(0);
-        user.setId(0L);
-        userRepository.save(user);
+        Operator operator = new Operator();
+        operator.setOperatorName(operatorName);
+        operator.setOperatorPassword(passwordEncoder.encode(operatorPassword));
+        operator.setRoleId(roleId);
+        operator.setOperatorSurname("");
+        operator.setOperatorPhoneNumber("");
+        operator.setServiceId(0);
+        operator.setCustomerId(0);
+        operator.setId(0L);
+        operatorRepository.save(operator);
         Map<String, Object> resp = new HashMap<>();
         resp.put("status", "success");
-        resp.put("message", "User registered successfully");
+        resp.put("message", "Operator registered successfully");
         return resp;
     }
 
     @PostMapping("/login")
     public Map<String, Object> login(@RequestBody Map<String, String> loginMap) {
-        String userName = loginMap.get("user_name");
-        String userPassword = loginMap.get("user_password");
+        String operatorName = loginMap.get("operator_name");
+        String operatorPassword = loginMap.get("operator_password");
         Map<String, Object> resp = new HashMap<>();
         try {
             Authentication auth = authenticationManager.authenticate(
-                    new UsernamePasswordAuthenticationToken(userName, userPassword));
-            User user = userRepository.findByUserName(userName).orElseThrow();
-            Role role = roleRepository.findByRoleId(user.getRoleId()).orElseThrow();
-            String token = jwtUtil.generateToken(user.getUserName(), role.getRoleType());
+                    new UsernamePasswordAuthenticationToken(operatorName, operatorPassword));
+            Operator operator = operatorRepository.findByOperatorName(operatorName).orElseThrow();
+            Role role = roleRepository.findByRoleId(operator.getRoleId()).orElseThrow();
+            String token = jwtUtil.generateToken(operator.getOperatorName(), role.getRoleType());
             resp.put("status", "success");
             resp.put("token", token);
         } catch (AuthenticationException e) {
             resp.put("status", "error");
-            resp.put("message", "Invalid username or password");
+            resp.put("message", "Invalid operator name or password");
         }
         return resp;
     }
-
-
 } 

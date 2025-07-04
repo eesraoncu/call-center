@@ -20,9 +20,9 @@ Keys.hmacShaKeyFor(): HMAC-SHA algoritması için anahtar oluşturur.
 getBytes(): String'i byte array'e çevirir.
 Amaç: JWT imzalama işlemleri için güvenli anahtar sağlar.*/
 
-    public String generateToken(String username, String roleType) {
+    public String generateToken(String operatorName, String roleType) {
         return Jwts.builder()
-                .setSubject(username) // JWT token'ının içindeki username'i belirler.
+                .setSubject(operatorName) // JWT token'ının içindeki operatorName'i belirler.
                 .claim("role", roleType) // JWT token'ının içindeki role'u belirler.
                 .setIssuedAt(new Date()) // JWT token'ının oluşturulma tarihini belirler.
                 .setExpiration(new Date(System.currentTimeMillis() + jwtExpirationMs)) // JWT token'ının süresini belirler.
@@ -30,9 +30,9 @@ Amaç: JWT imzalama işlemleri için güvenli anahtar sağlar.*/
                 .compact(); // JWT token'ını oluşturur.
     }
 
-    public String getUsernameFromToken(String token) {
+    public String getOperatorNameFromToken(String token) {
         return Jwts.parserBuilder().setSigningKey(getSigningKey()).build() // JWT token'ının doğrulanması için gereklidir.
-                .parseClaimsJws(token).getBody().getSubject(); // JWT token'ının içindeki username'i döndürür.
+                .parseClaimsJws(token).getBody().getSubject(); // JWT token'ının içindeki operatorName'i döndürür.
     }
 
     public String getRoleFromToken(String token) {

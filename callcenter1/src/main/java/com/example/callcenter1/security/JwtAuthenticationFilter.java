@@ -27,23 +27,23 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
             throws ServletException, IOException {//JWT token'ının doğrulanması için gereklidir.
         String authHeader = request.getHeader("Authorization");//Authorization: JWT token'ının başlangıç kısmıdır.
         String token = null;//token'ı null olarak atar.
-        String username = null;//username'i null olarak atar.
+        String operatorName = null;//operatorName'i null olarak atar.
         
         try {
             if (authHeader != null && authHeader.startsWith("Bearer ")) {//Bearer: JWT token'ının başlangıç kısmıdır.
                 token = authHeader.substring(7);//Bearer'ın sonrasındaki token'ı alır.
-                username = jwtUtil.getUsernameFromToken(token);//JWT token'ının içindeki username'i alır.
+                operatorName = jwtUtil.getOperatorNameFromToken(token);//JWT token'ının içindeki operatorName'i alır.
             }
             
-            if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {//username'in null olmaması ve authentication'ın null olmaması gereklidir.
-                UserDetails userDetails = userDetailsService.loadUserByUsername(username);//username'i alır.
+            if (operatorName != null && SecurityContextHolder.getContext().getAuthentication() == null) {//operatorName'in null olmaması ve authentication'ın null olmaması gereklidir.
+                UserDetails userDetails = userDetailsService.loadUserByUsername(operatorName);//operatorName'i alır.
                 if (jwtUtil.validateToken(token)) {//token'ın geçerli olması gereklidir.
                     UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(
                             userDetails, null, userDetails.getAuthorities());//userDetails'ı ve yetkilerini alır.
                     authToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));// request'i alır.
                     SecurityContextHolder.getContext().setAuthentication(authToken);//authentication'ı alır.
                 } else {
-                    System.out.println("JWT token validation failed for user: " + username);
+                    System.out.println("JWT token validation failed for operator: " + operatorName);
                 }
             }
         } catch (Exception e) {
