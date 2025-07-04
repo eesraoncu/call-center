@@ -36,7 +36,8 @@ public class SecurityConfig {
         http
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/login", "/register", "/swagger-ui/**", "/v3/api-docs/**").permitAll()
+                        .requestMatchers("/login", "/register", "/swagger-ui/**", "/v3/api-docs/**").permitAll()//burada tanımlanan endpointler dışarıdan erişilebilir.
+                        .requestMatchers("/demo-verify-int-test", "/demo-verify-int").authenticated() // Demo endpoint'leri için authentication gerekli
                         .anyRequest().authenticated()
                 )
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))

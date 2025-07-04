@@ -33,7 +33,7 @@ public class AuthController {
     public Map<String, Object> register(@RequestBody Map<String, String> userMap) {
         String userName = userMap.get("user_name");
         String userPassword = userMap.get("user_password");
-        Integer roleId = Integer.valueOf(userMap.getOrDefault("role_id", "1"));
+        Integer roleId = Integer.valueOf(userMap.getOrDefault("role_id", "1"));// role_id giriş ekranından kaldırılacak ve role_id değeri veritabanından çekilecek.
         if (userRepository.findByUserName(userName).isPresent()) {
             Map<String, Object> resp = new HashMap<>();
             resp.put("status", "error");
@@ -75,4 +75,6 @@ public class AuthController {
         }
         return resp;
     }
+
+
 } 
