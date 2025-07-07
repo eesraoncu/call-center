@@ -1,4 +1,4 @@
-package com.example.callcenter1.model;
+package com.example.callcenter1.model.operator;
 
 import jakarta.persistence.*;
 

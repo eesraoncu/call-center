@@ -1,9 +1,9 @@
 package com.example.callcenter1.security;
 
-import com.example.callcenter1.model.Operator;
-import com.example.callcenter1.model.Role;
-import com.example.callcenter1.repository.OperatorRepository;
-import com.example.callcenter1.repository.RoleRepository;
+import com.example.callcenter1.model.operator.Operator;
+import com.example.callcenter1.model.operator.Role;
+import com.example.callcenter1.repository.operator.OperatorRepository;
+import com.example.callcenter1.repository.operator.RoleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

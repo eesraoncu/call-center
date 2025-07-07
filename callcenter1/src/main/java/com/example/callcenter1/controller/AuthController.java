@@ -1,9 +1,9 @@
 package com.example.callcenter1.controller;
 
-import com.example.callcenter1.model.Operator;
-import com.example.callcenter1.model.Role;
-import com.example.callcenter1.repository.OperatorRepository;
-import com.example.callcenter1.repository.RoleRepository;
+import com.example.callcenter1.model.operator.Operator;
+import com.example.callcenter1.model.operator.Role;
+import com.example.callcenter1.repository.operator.OperatorRepository;
+import com.example.callcenter1.repository.operator.RoleRepository;
 import com.example.callcenter1.security.JwtUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;

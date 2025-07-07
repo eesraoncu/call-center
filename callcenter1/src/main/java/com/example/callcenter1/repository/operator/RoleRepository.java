@@ -1,6 +1,6 @@
-package com.example.callcenter1.repository;
+package com.example.callcenter1.repository.operator;
 
-import com.example.callcenter1.model.Role;
+import com.example.callcenter1.model.operator.Role;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;
