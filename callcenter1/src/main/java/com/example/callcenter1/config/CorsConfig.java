@@ -1,4 +1,31 @@
 package com.example.callcenter1.config;
 
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+
+/**
+ * Uygulamanın CORS (Cross-Origin Resource Sharing) ayarlarını yöneten konfigürasyon sınıfıdır.
+ * Burada tanımlanan ayarlar sayesinde, frontend uygulaman farklı bir port veya domainde çalışsa bile backend'e erişebilir.
+ */
+@Configuration
 public class CorsConfig {
+    /**
+     * Tüm endpointler için temel CORS ayarlarını uygular.
+     * Gerekirse allowedOrigins kısmını frontend adresinle sınırlandırabilirsin.
+     */
+    @Bean
+    public WebMvcConfigurer corsConfigurer() {
+        return new WebMvcConfigurer() {
+            @Override
+            public void addCorsMappings(CorsRegistry registry) {
+                registry.addMapping("/**")
+                        .allowedOrigins("http://localhost:3000") // Frontend adresi
+                        .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
+                        .allowedHeaders("*")
+                        .allowCredentials(true);
+            }
+        };
+    }
 }
