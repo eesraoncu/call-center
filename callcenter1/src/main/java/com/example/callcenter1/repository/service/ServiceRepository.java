@@ -1,4 +1,10 @@
 package com.example.callcenter1.repository.service;
 
-public class ServiceRepository {
+import com.example.callcenter1.model.service.Service; // Mustafa'nın oluşturacağı model sınıfı
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+import java.util.Optional;
+@Repository
+public interface ServiceRepository extends JpaRepository<Service, Integer> {
+    // Optional<Service> findByServiceType(String serviceType);
 }
