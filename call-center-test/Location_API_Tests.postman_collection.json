@@ -1,0 +1,542 @@
+{
+  "info": {
+    "name": "Location API Tests",
+    "description": "Address endpoint'lerini test etmek için Postman Collection",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Şehir İşlemleri",
+      "item": [
+        {
+          "name": "Tüm Şehirleri Listele",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/locations/cities",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "locations", "cities"]
+            }
+          }
+        },
+        {
+          "name": "Şehir Oluştur - İstanbul",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"cityName\": \"İstanbul\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/locations/cities",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "locations", "cities"]
+            }
+          }
+        },
+        {
+          "name": "Şehir Oluştur - Ankara",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"cityName\": \"Ankara\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/locations/cities",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "locations", "cities"]
+            }
+          }
+        },
+        {
+          "name": "Şehir Getir (ID: 1)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/locations/cities/1",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "locations", "cities", "1"]
+            }
+          }
+        },
+        {
+          "name": "Şehir Güncelle (ID: 1)",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"cityName\": \"İstanbul (Güncellenmiş)\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/locations/cities/1",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "locations", "cities", "1"]
+            }
+          }
+        },
+        {
+          "name": "Şehir Sil (ID: 1)",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/locations/cities/1",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "locations", "cities", "1"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "İlçe İşlemleri",
+      "item": [
+        {
+          "name": "Şehir İlçelerini Listele (City ID: 1)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/locations/cities/1/districts",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "locations", "cities", "1", "districts"]
+            }
+          }
+        },
+        {
+          "name": "İlçe Oluştur - Kadıköy",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"cityId\": 1,\n  \"districtName\": \"Kadıköy\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/locations/districts",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "locations", "districts"]
+            }
+          }
+        },
+        {
+          "name": "İlçe Oluştur - Beşiktaş",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"cityId\": 1,\n  \"districtName\": \"Beşiktaş\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/locations/districts",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "locations", "districts"]
+            }
+          }
+        },
+        {
+          "name": "İlçe Oluştur - Çankaya",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"cityId\": 2,\n  \"districtName\": \"Çankaya\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/locations/districts",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "locations", "districts"]
+            }
+          }
+        },
+        {
+          "name": "İlçe Getir (ID: 1)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/locations/districts/1",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "locations", "districts", "1"]
+            }
+          }
+        },
+        {
+          "name": "İlçe Güncelle (ID: 1)",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"districtName\": \"Kadıköy (Güncellenmiş)\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/locations/districts/1",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "locations", "districts", "1"]
+            }
+          }
+        },
+        {
+          "name": "İlçe Sil (ID: 1)",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/locations/districts/1",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "locations", "districts", "1"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Belde/Köy İşlemleri",
+      "item": [
+        {
+          "name": "İlçe Beldelerini Listele (District ID: 1)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/locations/districts/1/townships",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "locations", "districts", "1", "townships"]
+            }
+          }
+        },
+        {
+          "name": "Belde/Köy Oluştur - Fenerbahçe",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"districtId\": 1,\n  \"districtTownshipTownName\": \"Fenerbahçe\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/locations/townships",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "locations", "townships"]
+            }
+          }
+        },
+        {
+          "name": "Belde/Köy Oluştur - Göztepe",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"districtId\": 1,\n  \"districtTownshipTownName\": \"Göztepe\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/locations/townships",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "locations", "townships"]
+            }
+          }
+        },
+        {
+          "name": "Belde/Köy Oluştur - Levent",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"districtId\": 2,\n  \"districtTownshipTownName\": \"Levent\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/locations/townships",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "locations", "townships"]
+            }
+          }
+        },
+        {
+          "name": "Belde/Köy Getir (ID: 1)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/locations/townships/1",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "locations", "townships", "1"]
+            }
+          }
+        },
+        {
+          "name": "Belde/Köy Güncelle (ID: 1)",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"districtTownshipTownName\": \"Fenerbahçe (Güncellenmiş)\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/locations/townships/1",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "locations", "townships", "1"]
+            }
+          }
+        },
+        {
+          "name": "Belde/Köy Sil (ID: 1)",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/locations/townships/1",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "locations", "townships", "1"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Mahalle İşlemleri",
+      "item": [
+        {
+          "name": "Belde Mahallelerini Listele (Township ID: 1)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/locations/townships/1/neighbourhoods",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "locations", "townships", "1", "neighbourhoods"]
+            }
+          }
+        },
+        {
+          "name": "Mahalle Oluştur - Fenerbahçe Mahallesi",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"districtTownshipTownId\": 1,\n  \"neighbourhoodName\": \"Fenerbahçe Mahallesi\",\n  \"neighbourhoodExplanation\": \"Fenerbahçe semtinin ana mahallesi\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/locations/neighbourhoods",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "locations", "neighbourhoods"]
+            }
+          }
+        },
+        {
+          "name": "Mahalle Oluştur - Kalamış Mahallesi",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"districtTownshipTownId\": 1,\n  \"neighbourhoodName\": \"Kalamış Mahallesi\",\n  \"neighbourhoodExplanation\": \"Fenerbahçe semtinin Kalamış mahallesi\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/locations/neighbourhoods",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "locations", "neighbourhoods"]
+            }
+          }
+        },
+        {
+          "name": "Mahalle Oluştur - Göztepe Mahallesi",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"districtTownshipTownId\": 2,\n  \"neighbourhoodName\": \"Göztepe Mahallesi\",\n  \"neighbourhoodExplanation\": \"Göztepe semtinin ana mahallesi\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/locations/neighbourhoods",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "locations", "neighbourhoods"]
+            }
+          }
+        },
+        {
+          "name": "Mahalle Getir (ID: 1)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/locations/neighbourhoods/1",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "locations", "neighbourhoods", "1"]
+            }
+          }
+        },
+        {
+          "name": "Mahalle Güncelle (ID: 1)",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"neighbourhoodName\": \"Fenerbahçe Mahallesi (Güncellenmiş)\",\n  \"neighbourhoodExplanation\": \"Fenerbahçe semtinin ana mahallesi - güncellenmiş açıklama\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/locations/neighbourhoods/1",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "locations", "neighbourhoods", "1"]
+            }
+          }
+        },
+        {
+          "name": "Mahalle Sil (ID: 1)",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/locations/neighbourhoods/1",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "locations", "neighbourhoods", "1"]
+            }
+          }
+        }
+      ]
+    }
+  ]
+} 

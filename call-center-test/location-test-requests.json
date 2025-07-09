@@ -1,0 +1,223 @@
+{
+  "test_requests": {
+    "city_requests": {
+      "create_city": {
+        "method": "POST",
+        "url": "http://localhost:8080/api/locations/cities",
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "body": {
+          "cityName": "İstanbul"
+        },
+        "description": "Yeni şehir oluşturma"
+      },
+      "create_city_2": {
+        "method": "POST",
+        "url": "http://localhost:8080/api/locations/cities",
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "body": {
+          "cityName": "Ankara"
+        },
+        "description": "İkinci şehir oluşturma"
+      },
+      "update_city": {
+        "method": "PUT",
+        "url": "http://localhost:8080/api/locations/cities/1",
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "body": {
+          "cityName": "İstanbul (Güncellenmiş)"
+        },
+        "description": "Şehir güncelleme"
+      }
+    },
+    "district_requests": {
+      "create_district": {
+        "method": "POST",
+        "url": "http://localhost:8080/api/locations/districts",
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "body": {
+          "cityId": 1,
+          "districtName": "Kadıköy"
+        },
+        "description": "İstanbul'a bağlı ilçe oluşturma"
+      },
+      "create_district_2": {
+        "method": "POST",
+        "url": "http://localhost:8080/api/locations/districts",
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "body": {
+          "cityId": 1,
+          "districtName": "Beşiktaş"
+        },
+        "description": "İstanbul'a bağlı ikinci ilçe oluşturma"
+      },
+      "create_district_3": {
+        "method": "POST",
+        "url": "http://localhost:8080/api/locations/districts",
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "body": {
+          "cityId": 2,
+          "districtName": "Çankaya"
+        },
+        "description": "Ankara'ya bağlı ilçe oluşturma"
+      },
+      "update_district": {
+        "method": "PUT",
+        "url": "http://localhost:8080/api/locations/districts/1",
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "body": {
+          "districtName": "Kadıköy (Güncellenmiş)"
+        },
+        "description": "İlçe güncelleme"
+      }
+    },
+    "township_requests": {
+      "create_township": {
+        "method": "POST",
+        "url": "http://localhost:8080/api/locations/townships",
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "body": {
+          "districtId": 1,
+          "districtTownshipTownName": "Fenerbahçe"
+        },
+        "description": "Kadıköy'e bağlı belde/köy oluşturma"
+      },
+      "create_township_2": {
+        "method": "POST",
+        "url": "http://localhost:8080/api/locations/townships",
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "body": {
+          "districtId": 1,
+          "districtTownshipTownName": "Göztepe"
+        },
+        "description": "Kadıköy'e bağlı ikinci belde/köy oluşturma"
+      },
+      "create_township_3": {
+        "method": "POST",
+        "url": "http://localhost:8080/api/locations/townships",
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "body": {
+          "districtId": 2,
+          "districtTownshipTownName": "Levent"
+        },
+        "description": "Beşiktaş'a bağlı belde/köy oluşturma"
+      },
+      "update_township": {
+        "method": "PUT",
+        "url": "http://localhost:8080/api/locations/townships/1",
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "body": {
+          "districtTownshipTownName": "Fenerbahçe (Güncellenmiş)"
+        },
+        "description": "Belde/köy güncelleme"
+      }
+    },
+    "neighbourhood_requests": {
+      "create_neighbourhood": {
+        "method": "POST",
+        "url": "http://localhost:8080/api/locations/neighbourhoods",
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "body": {
+          "districtTownshipTownId": 1,
+          "neighbourhoodName": "Fenerbahçe Mahallesi",
+          "neighbourhoodExplanation": "Fenerbahçe semtinin ana mahallesi"
+        },
+        "description": "Fenerbahçe'ye bağlı mahalle oluşturma"
+      },
+      "create_neighbourhood_2": {
+        "method": "POST",
+        "url": "http://localhost:8080/api/locations/neighbourhoods",
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "body": {
+          "districtTownshipTownId": 1,
+          "neighbourhoodName": "Kalamış Mahallesi",
+          "neighbourhoodExplanation": "Fenerbahçe semtinin Kalamış mahallesi"
+        },
+        "description": "Fenerbahçe'ye bağlı ikinci mahalle oluşturma"
+      },
+      "create_neighbourhood_3": {
+        "method": "POST",
+        "url": "http://localhost:8080/api/locations/neighbourhoods",
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "body": {
+          "districtTownshipTownId": 2,
+          "neighbourhoodName": "Göztepe Mahallesi",
+          "neighbourhoodExplanation": "Göztepe semtinin ana mahallesi"
+        },
+        "description": "Göztepe'ye bağlı mahalle oluşturma"
+      },
+      "update_neighbourhood": {
+        "method": "PUT",
+        "url": "http://localhost:8080/api/locations/neighbourhoods/1",
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "body": {
+          "neighbourhoodName": "Fenerbahçe Mahallesi (Güncellenmiş)",
+          "neighbourhoodExplanation": "Fenerbahçe semtinin ana mahallesi - güncellenmiş açıklama"
+        },
+        "description": "Mahalle güncelleme"
+      }
+    }
+  },
+  "test_sequence": [
+    {
+      "step": 1,
+      "description": "Şehirleri oluştur",
+      "requests": ["create_city", "create_city_2"]
+    },
+    {
+      "step": 2,
+      "description": "İlçeleri oluştur",
+      "requests": ["create_district", "create_district_2", "create_district_3"]
+    },
+    {
+      "step": 3,
+      "description": "Beldeleri/Köyleri oluştur",
+      "requests": ["create_township", "create_township_2", "create_township_3"]
+    },
+    {
+      "step": 4,
+      "description": "Mahalleleri oluştur",
+      "requests": ["create_neighbourhood", "create_neighbourhood_2", "create_neighbourhood_3"]
+    },
+    {
+      "step": 5,
+      "description": "Güncelleme işlemleri",
+      "requests": ["update_city", "update_district", "update_township", "update_neighbourhood"]
+    }
+  ],
+  "curl_examples": {
+    "create_city": "curl -X POST http://localhost:8080/api/locations/cities -H \"Content-Type: application/json\" -d '{\"cityName\": \"İstanbul\"}'",
+    "create_district": "curl -X POST http://localhost:8080/api/locations/districts -H \"Content-Type: application/json\" -d '{\"cityId\": 1, \"districtName\": \"Kadıköy\"}'",
+    "create_township": "curl -X POST http://localhost:8080/api/locations/townships -H \"Content-Type: application/json\" -d '{\"districtId\": 1, \"districtTownshipTownName\": \"Fenerbahçe\"}'",
+    "create_neighbourhood": "curl -X POST http://localhost:8080/api/locations/neighbourhoods -H \"Content-Type: application/json\" -d '{\"districtTownshipTownId\": 1, \"neighbourhoodName\": \"Fenerbahçe Mahallesi\", \"neighbourhoodExplanation\": \"Fenerbahçe semtinin ana mahallesi\"}'"
+  }
+} 

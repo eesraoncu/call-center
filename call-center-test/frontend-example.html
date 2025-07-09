@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adres Seçimi - Call Center</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #555;
+        }
+        select {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+            background-color: white;
+        }
+        select:focus {
+            outline: none;
+            border-color: #007bff;
+        }
+        select:disabled {
+            background-color: #f8f9fa;
+            color: #6c757d;
+        }
+        .address-info {
+            margin-top: 30px;
+            padding: 20px;
+            background-color: #e9ecef;
+            border-radius: 5px;
+            border-left: 4px solid #007bff;
+        }
+        .loading {
+            color: #007bff;
+            font-style: italic;
+        }
+        .error {
+            color: #dc3545;
+            font-size: 14px;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📍 Adres Bilgileri</h1>
+        
+        <form id="addressForm">
+            <div class="form-group">
+                <label for="city">Şehir:</label>
+                <select id="city" name="city" required>
+                    <option value="">Şehir seçiniz...</option>
+                </select>
+                <div id="cityError" class="error"></div>
+            </div>
+
+            <div class="form-group">
+                <label for="district">İlçe:</label>
+                <select id="district" name="district" required disabled>
+                    <option value="">Önce şehir seçiniz...</option>
+                </select>
+                <div id="districtError" class="error"></div>
+            </div>
+
+            <div class="form-group">
+                <label for="township">Belde/Köy:</label>
+                <select id="township" name="township" required disabled>
+                    <option value="">Önce ilçe seçiniz...</option>
+                </select>
+                <div id="townshipError" class="error"></div>
+            </div>
+
+            <div class="form-group">
+                <label for="neighbourhood">Mahalle:</label>
+                <select id="neighbourhood" name="neighbourhood" required disabled>
+                    <option value="">Önce belde/köy seçiniz...</option>
+                </select>
+                <div id="neighbourhoodError" class="error"></div>
+            </div>
+        </form>
+
+        <div id="addressInfo" class="address-info" style="display: none;">
+            <h3>Seçilen Adres Bilgileri:</h3>
+            <p><strong>Şehir:</strong> <span id="selectedCity"></span></p>
+            <p><strong>İlçe:</strong> <span id="selectedDistrict"></span></p>
+            <p><strong>Belde/Köy:</strong> <span id="selectedTownship"></span></p>
+            <p><strong>Mahalle:</strong> <span id="selectedNeighbourhood"></span></p>
+        </div>
+    </div>
+
+    <script>
+        // API Base URL - Backend'inizin çalıştığı adres
+        const API_BASE_URL = 'http://localhost:8080/api/locations';
+        
+        // DOM elementleri
+        const citySelect = document.getElementById('city');
+        const districtSelect = document.getElementById('district');
+        const townshipSelect = document.getElementById('township');
+        const neighbourhoodSelect = document.getElementById('neighbourhood');
+        
+        // Event listeners
+        citySelect.addEventListener('change', loadDistricts);
+        districtSelect.addEventListener('change', loadTownships);
+        townshipSelect.addEventListener('change', loadNeighbourhoods);
+        neighbourhoodSelect.addEventListener('change', updateAddressInfo);
+
+        // Sayfa yüklendiğinde şehirleri yükle
+        document.addEventListener('DOMContentLoaded', loadCities);
+
+        // Şehirleri yükle
+        async function loadCities() {
+            try {
+                showLoading(citySelect, 'Şehirler yükleniyor...');
+                
+                const response = await fetch(`${API_BASE_URL}/cities`);
+                const data = await response.json();
+                
+                if (data.success) {
+                    populateSelect(citySelect, data.data, 'cityId', 'cityName', 'Şehir seçiniz...');
+                } else {
+                    showError('cityError', 'Şehirler yüklenirken hata oluştu');
+                }
+            } catch (error) {
+                showError('cityError', 'Bağlantı hatası: ' + error.message);
+            }
+        }
+
+        // İlçeleri yükle
+        async function loadDistricts() {
+            const cityId = citySelect.value;
+            if (!cityId) {
+                resetSelect(districtSelect, 'Önce şehir seçiniz...');
+                resetSelect(townshipSelect, 'Önce ilçe seçiniz...');
+                resetSelect(neighbourhoodSelect, 'Önce belde/köy seçiniz...');
+                return;
+            }
+
+            try {
+                showLoading(districtSelect, 'İlçeler yükleniyor...');
+                
+                const response = await fetch(`${API_BASE_URL}/cities/${cityId}/districts`);
+                const data = await response.json();
+                
+                if (data.success) {
+                    populateSelect(districtSelect, data.data, 'districtId', 'districtName', 'İlçe seçiniz...');
+                    districtSelect.disabled = false;
+                    
+                    // Alt seviyeleri sıfırla
+                    resetSelect(townshipSelect, 'Önce ilçe seçiniz...');
+                    resetSelect(neighbourhoodSelect, 'Önce belde/köy seçiniz...');
+                } else {
+                    showError('districtError', 'İlçeler yüklenirken hata oluştu');
+                }
+            } catch (error) {
+                showError('districtError', 'Bağlantı hatası: ' + error.message);
+            }
+        }
+
+        // Beldeleri/Köyleri yükle
+        async function loadTownships() {
+            const districtId = districtSelect.value;
+            if (!districtId) {
+                resetSelect(townshipSelect, 'Önce ilçe seçiniz...');
+                resetSelect(neighbourhoodSelect, 'Önce belde/köy seçiniz...');
+                return;
+            }
+
+            try {
+                showLoading(townshipSelect, 'Beldeler/Köyler yükleniyor...');
+                
+                const response = await fetch(`${API_BASE_URL}/districts/${districtId}/townships`);
+                const data = await response.json();
+                
+                if (data.success) {
+                    populateSelect(townshipSelect, data.data, 'townshipId', 'townshipName', 'Belde/Köy seçiniz...');
+                    townshipSelect.disabled = false;
+                    
+                    // Alt seviyeyi sıfırla
+                    resetSelect(neighbourhoodSelect, 'Önce belde/köy seçiniz...');
+                } else {
+                    showError('townshipError', 'Beldeler/Köyler yüklenirken hata oluştu');
+                }
+            } catch (error) {
+                showError('townshipError', 'Bağlantı hatası: ' + error.message);
+            }
+        }
+
+        // Mahalleleri yükle
+        async function loadNeighbourhoods() {
+            const townshipId = townshipSelect.value;
+            if (!townshipId) {
+                resetSelect(neighbourhoodSelect, 'Önce belde/köy seçiniz...');
+                return;
+            }
+
+            try {
+                showLoading(neighbourhoodSelect, 'Mahalleler yükleniyor...');
+                
+                const response = await fetch(`${API_BASE_URL}/townships/${townshipId}/neighbourhoods`);
+                const data = await response.json();
+                
+                if (data.success) {
+                    populateSelect(neighbourhoodSelect, data.data, 'neighbourhoodId', 'neighbourhoodName', 'Mahalle seçiniz...');
+                    neighbourhoodSelect.disabled = false;
+                } else {
+                    showError('neighbourhoodError', 'Mahalleler yüklenirken hata oluştu');
+                }
+            } catch (error) {
+                showError('neighbourhoodError', 'Bağlantı hatası: ' + error.message);
+            }
+        }
+
+        // Select elementini doldur
+        function populateSelect(selectElement, data, valueField, textField, defaultText) {
+            selectElement.innerHTML = '';
+            
+            const defaultOption = document.createElement('option');
+            defaultOption.value = '';
+            defaultOption.textContent = defaultText;
+            selectElement.appendChild(defaultOption);
+            
+            data.forEach(item => {
+                const option = document.createElement('option');
+                option.value = item[valueField];
+                option.textContent = item[textField];
+                selectElement.appendChild(option);
+            });
+            
+            selectElement.disabled = false;
+        }
+
+        // Select elementini sıfırla
+        function resetSelect(selectElement, defaultText) {
+            selectElement.innerHTML = '';
+            const defaultOption = document.createElement('option');
+            defaultOption.value = '';
+            defaultOption.textContent = defaultText;
+            selectElement.appendChild(defaultOption);
+            selectElement.disabled = true;
+        }
+
+        // Loading göster
+        function showLoading(selectElement, message) {
+            selectElement.innerHTML = '';
+            const loadingOption = document.createElement('option');
+            loadingOption.value = '';
+            loadingOption.textContent = message;
+            loadingOption.className = 'loading';
+            selectElement.appendChild(loadingOption);
+            selectElement.disabled = true;
+        }
+
+        // Hata göster
+        function showError(elementId, message) {
+            const errorElement = document.getElementById(elementId);
+            errorElement.textContent = message;
+            errorElement.style.display = 'block';
+        }
+
+        // Adres bilgilerini güncelle
+        function updateAddressInfo() {
+            const cityText = citySelect.options[citySelect.selectedIndex]?.text || '';
+            const districtText = districtSelect.options[districtSelect.selectedIndex]?.text || '';
+            const townshipText = townshipSelect.options[townshipSelect.selectedIndex]?.text || '';
+            const neighbourhoodText = neighbourhoodSelect.options[neighbourhoodSelect.selectedIndex]?.text || '';
+
+            if (cityText && districtText && townshipText && neighbourhoodText) {
+                document.getElementById('selectedCity').textContent = cityText;
+                document.getElementById('selectedDistrict').textContent = districtText;
+                document.getElementById('selectedTownship').textContent = townshipText;
+                document.getElementById('selectedNeighbourhood').textContent = neighbourhoodText;
+                
+                document.getElementById('addressInfo').style.display = 'block';
+            } else {
+                document.getElementById('addressInfo').style.display = 'none';
+            }
+        }
+
+        // Form submit işlemi
+        document.getElementById('addressForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const formData = {
+                cityId: citySelect.value,
+                cityName: citySelect.options[citySelect.selectedIndex]?.text,
+                districtId: districtSelect.value,
+                districtName: districtSelect.options[districtSelect.selectedIndex]?.text,
+                townshipId: townshipSelect.value,
+                townshipName: townshipSelect.options[townshipSelect.selectedIndex]?.text,
+                neighbourhoodId: neighbourhoodSelect.value,
+                neighbourhoodName: neighbourhoodSelect.options[neighbourhoodSelect.selectedIndex]?.text
+            };
+            
+            console.log('Seçilen adres bilgileri:', formData);
+            alert('Adres bilgileri başarıyla seçildi! Console\'da detayları görebilirsiniz.');
+        });
+    </script>
+</body>
+</html> 
