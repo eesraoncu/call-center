@@ -1,0 +1,183 @@
+.cagrimerkezi-page {
+    display: flex;
+    gap: 20px;
+    min-height: 80vh;
+}
+
+.calls-list-container {
+    flex: 1 1 250px;
+    background: #1a1a1a;
+    padding: 20px;
+    border-radius: 8px;
+    min-width: 250px;
+}
+
+.call-details-container {
+    flex: 3 1 0;
+    background: #1a1a1a;
+    padding: 20px;
+    border-radius: 8px;
+    min-height: 80vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.placeholder {
+    color: #777;
+    font-style: italic;
+    font-size: 1.12rem;
+    text-align: center;
+}
+
+.submit-btn {
+    background: #2a9d8f;
+    color: #fff;
+    border: none;
+    padding: 8px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background 0.2s;
+}
+
+.submit-btn:hover {
+    background: #1abc9c;
+}
+
+.calls-list-ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.calls-list-li {
+    margin-bottom: 8px;
+    color: #eee;
+    background: #232438;
+    border-radius: 4px;
+    padding: 7px 12px;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.calls-list-li.selected {
+    background: #3469e8;
+    color: #FFD600;
+}
+
+.calls-list-li:hover {
+    background: #22274d;
+}
+
+.delete-call-btn {
+    background: none;
+    border: none;
+    color: #ff4747;
+    font-size: 1.2em;
+    margin-left: 12px;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.delete-call-btn:hover {
+    color: #fff;
+}
+
+/* Modal stilleri */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: #181920a9;
+    z-index: 50;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-content {
+    background: #232438;
+    color: #fff;
+    border-radius: 10px;
+    padding: 28px 30px;
+    min-width: 330px;
+    max-width: 95vw;
+    position: relative;
+    box-shadow: 0 8px 32px #000a;
+}
+
+.modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 12px;
+}
+
+.close-modal {
+    background: transparent;
+    color: #FFD600;
+    font-size: 2rem;
+    border: none;
+    cursor: pointer;
+}
+
+.form-group {
+    margin-bottom: 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    padding: 7px 8px;
+    border-radius: 4px;
+    border: 1px solid #333;
+    background: #181924;
+    color: #eee;
+    font-size: 1rem;
+    outline: none;
+    margin-top: 2px;
+}
+
+.form-actions {
+    display: flex;
+    gap: 16px;
+    justify-content: flex-end;
+    margin-top: 10px;
+}
+
+.cancel-btn {
+    background: #666;
+    color: #fff;
+    border: none;
+    padding: 8px 18px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.cancel-btn:hover {
+    background: #d32f2f;
+}
+
+.error-message {
+    color: #ff3333;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.call-details-card {
+    background: #232438;
+    padding: 28px 36px;
+    border-radius: 10px;
+    min-width: 260px;
+    box-shadow: 0 2px 12px #0003;
+}

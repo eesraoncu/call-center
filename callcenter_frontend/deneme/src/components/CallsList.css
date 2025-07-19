@@ -1,0 +1,50 @@
+.calls-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    max-height: 80vh;
+    overflow-y: auto;
+}
+
+.calls-list li {
+    padding: 12px;
+    border-bottom: 1px solid #2a2a2a;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.calls-list li:hover {
+    background: #1e1e1e;
+}
+
+.call-item-header {
+    display: flex;
+    justify-content: space-between;
+    font-weight: 600;
+}
+
+.call-id {
+    color: #ccc;
+}
+
+.call-status {
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 12px;
+}
+
+.call-status.beklemede {
+    background: #444;
+    color: #f0ad4e;
+}
+
+.call-status.çözüldü {
+    background: #444;
+    color: #5cb85c;
+}
+
+.call-customer,
+.call-time {
+    font-size: 14px;
+    color: #aaa;
+}

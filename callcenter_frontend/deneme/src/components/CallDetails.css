@@ -1,0 +1,151 @@
+/* src/components/CallDetails.css */
+.call-details {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    /* Bölümler arası boşluğu sıkılaştırdık */
+    padding: 16px;
+    /* Genel padding azaltıldı */
+    background: #1a1a1a;
+    border-radius: 8px;
+}
+
+/* Çağrı Üst Bilgileri */
+.call-overview {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    /* Aralıklar daraltıldı */
+    background: none;
+    /* Kart benzeri görünümü kaldırdık */
+    padding: 0;
+    /* İç boşluk kaldırıldı */
+    border-radius: 0;
+}
+
+.call-overview div {
+    flex: 1 1 150px;
+    /* Minimum genişlik düşürüldü */
+    margin-bottom: 4px;
+    /* Alt boşluk eklendi */
+}
+
+.call-overview strong {
+    color: #bbb;
+}
+
+/* Müşteri Bilgileri */
+.customer-info {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    padding: 0;
+}
+
+.customer-info h3 {
+    width: 100%;
+    margin-bottom: 8px;
+}
+
+.info-row {
+    display: flex;
+    width: 100%;
+    margin-bottom: 4px;
+}
+
+.info-label {
+    width: 100px;
+    /* Label genişliği biraz kısaltıldı */
+    font-weight: 600;
+    color: #aaa;
+}
+
+.info-value {
+    flex: 1;
+    color: #fff;
+}
+
+/* Şikayet / Konu */
+.complaint-section {
+    padding: 0;
+    margin: 0;
+}
+
+.complaint-section h3 {
+    margin-bottom: 8px;
+}
+
+.complaint-text {
+    margin: 0;
+    color: #ddd;
+    line-height: 1.4;
+    /* Satır yüksekliğini düşürdük */
+}
+
+/* Notlar Listesi */
+.notes-section {
+    padding: 0;
+}
+
+.notes-section h3 {
+    margin-bottom: 8px;
+}
+
+.notes-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.note-item {
+    display: flex;
+    gap: 8px;
+    /* Aralık azaltıldı */
+    padding: 6px 0;
+    /* Y dikey padding azaltıldı */
+    border-bottom: 1px solid #2a2a2a;
+}
+
+.note-time {
+    width: 50px;
+    /* Genişlik kısaltıldı */
+    color: #bbb;
+    font-size: 13px;
+}
+
+.note-text {
+    flex: 1;
+    color: #eee;
+    font-size: 14px;
+}
+
+/* İşlem Butonları */
+.actions-section {
+    padding: 0;
+}
+
+.actions-section h3 {
+    margin-bottom: 8px;
+}
+
+.actions-row {
+    display: flex;
+    gap: 12px;
+    /* Butonlar arası boşluk azaltıldı */
+}
+
+.action-btn {
+    padding: 8px 12px;
+    /* Buton padding’i biraz küçültüldü */
+    font-size: 14px;
+}
+
+/* Genel placeholder ve yükleniyor */
+.loading-text,
+.placeholder {
+    color: #777;
+    font-style: italic;
+    margin: 16px 0;
+    /* Ortaya hizalandı */
+    text-align: center;
+}

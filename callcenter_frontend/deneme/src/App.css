@@ -1,0 +1,742 @@
+/* Global Styles */
+body {
+  margin: 0;
+  background-color: #121212;
+  color: #f0f0f0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.6;
+  box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+/* App Container */
+.app-container {
+  position: relative;
+  min-height: 100vh;
+  padding: 0;
+}
+
+/* Hamburger Button */
+.menu-button {
+  position: fixed;
+  top: 15px;
+  left: 20px;
+  z-index: 1001;
+  font-size: 16px;
+  background-color: #1a1a1a;
+  color: #f0f0f0;
+  border: 2px solid #5d85b3;
+  padding: 8px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.menu-button:hover {
+  background-color: #9b5ea8;
+  border-color: #9b5ea8;
+}
+
+/* Sidebar */
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 250px;
+  height: 100vh;
+  background-color: #1a1a1a;
+  color: #fff;
+  padding: 20px;
+  z-index: 1000;
+  border-right: 1px solid #2a2a2a;
+}
+
+.close-button {
+  background: none;
+  border: none;
+  color: #5d85b3;
+  font-size: 22px;
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.close-button:hover {
+  color: #9b5ea8;
+}
+
+.sidebar-title {
+  font-size: 20px;
+  margin-top: 40px;
+  margin-bottom: 20px;
+  color: #5d85b3;
+}
+
+.nav-links {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.nav-link {
+  text-decoration: none;
+  color: #ccc;
+  padding: 10px;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+  border-left: 3px solid transparent;
+}
+
+.nav-link:hover {
+  background-color: #2a2a2a;
+  color: #9b5ea8;
+  border-left-color: #9b5ea8;
+}
+
+.nav-link.active {
+  background-color: #2a2a2a;
+  color: #5d85b3;
+  border-left-color: #5d85b3;
+  font-weight: 600;
+}
+
+/* Main Content */
+.main-content {
+  padding: 30px;
+  background-color: #121212;
+  min-height: 100vh;
+}
+
+/* Home Page */
+.anasayfa-container {
+  text-align: center;
+  padding: 40px 20px;
+}
+
+.anasayfa-heading {
+  font-size: 28px;
+  margin-bottom: 10px;
+  color: #5d85b3;
+}
+
+.anasayfa-email {
+  font-size: 18px;
+  color: #5d85b3;
+}
+
+.anasayfa-subtext {
+  margin-bottom: 30px;
+  color: #aaa;
+}
+
+.anasayfa-grid {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.anasayfa-card {
+  background-color: #1a1a1a;
+  padding: 20px;
+  border-radius: 10px;
+  width: 200px;
+  border-top: 3px solid #5d85b3;
+  transition: all 0.3s ease;
+}
+
+.anasayfa-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 5px 15px rgba(155, 94, 168, 0.3);
+  border-top-color: #9b5ea8;
+}
+
+.anasayfa-card-title {
+  margin-bottom: 10px;
+  color: #e0e0e0;
+}
+
+.anasayfa-number {
+  font-size: 30px;
+  font-weight: bold;
+  color: #5d85b3;
+}
+
+/* Müşteriler & Kullanıcılar Container */
+.aramakayitlari-container,
+.musteriler-container,
+.kullanicilar-container,
+/* kullanıcılar için de aynı stil */
+.cagrimerkezi-container {
+  background-color: #121212;
+  color: #f0f0f0;
+  padding: 40px 20px;
+  min-height: 100vh;
+}
+
+.aramakayitlari-heading,
+.musteriler-heading,
+.kullanicilar-heading,
+.cagrimerkezi-heading {
+  font-size: 26px;
+  margin-bottom: 10px;
+  color: #5d85b3;
+}
+
+.aramakayitlari-subtext,
+.musteriler-subtext,
+.kullanicilar-subtext,
+.cagrimerkezi-subtext {
+  font-size: 16px;
+  color: #5d85b3;
+}
+
+/* Tablo (Müşteriler ve Kullanıcılar için ortak) */
+.customer-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 2rem;
+  overflow-x: auto;
+  border-radius: 8px;
+  background-color: #1a1a1a;
+  border: 1px solid #2a2a2a;
+}
+
+.customer-table th {
+  background-color: #1a1a1a;
+  color: #5d85b3;
+  text-align: left;
+  padding: 15px 20px;
+  border-bottom: 2px solid #5d85b3;
+}
+
+.customer-table td {
+  padding: 15px 20px;
+  border-bottom: 1px solid #2a2a2a;
+  color: #f0f0f0;
+}
+
+.customer-table tr:hover {
+  background-color: #1e1e1e;
+}
+
+/* Butonlar (Müşteriler ve Kullanıcılar) */
+.add-customer-btn {
+  background-color: #5d85b3;
+  color: #fff;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background-color 0.3s;
+  margin-bottom: 12px;
+}
+
+.add-customer-btn:hover {
+  background-color: #9b5ea8;
+}
+
+.action-btn {
+  padding: 5px 10px;
+  margin: 0 3px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 13px;
+  transition: all 0.3s ease;
+}
+
+.edit-btn {
+  background-color: #5d85b3;
+  color: #fff;
+}
+
+.edit-btn:hover {
+  background-color: #9b5ea8;
+}
+
+.delete-btn {
+  background-color: #d9534f;
+  color: #fff;
+}
+
+.delete-btn:hover {
+  background-color: #c9302c;
+}
+
+/* Modal Styles (Müşteriler & Kullanıcılar) */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  backdrop-filter: blur(5px);
+}
+
+.modal-content {
+  background-color: #1a1a1a;
+  border: 1px solid #5d85b3;
+  padding: 30px 35px;
+  border-radius: 12px;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
+  width: 480px;
+  max-width: 90%;
+  max-height: 90vh;
+  overflow-y: auto;
+  transition: all 0.3s ease;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Modal Header */
+.modal-header {
+  background-color: #1a1a1a;
+  border-bottom: 1px solid #5d85b3;
+  padding-bottom: 12px;
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.modal-header h2 {
+  color: #5d85b3;
+  font-weight: 600;
+  font-size: 1.8rem;
+  margin: 0;
+}
+
+/* Close Modal Button */
+.close-modal {
+  background: none;
+  border: none;
+  color: #888;
+  font-size: 1.8rem;
+  cursor: pointer;
+  transition: color 0.2s ease;
+  padding: 0 6px 4px 6px;
+  line-height: 1;
+}
+
+.close-modal:hover {
+  color: #ff6b6b;
+}
+
+/* Modal Form */
+.form-group {
+  margin-bottom: 18px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 8px;
+  color: #ddd;
+  font-weight: 500;
+  font-size: 1rem;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  padding: 12px 14px;
+  background-color: #2a2a3f;
+  border: 1.5px solid #444;
+  border-radius: 8px;
+  color: #eee;
+  font-size: 1rem;
+  transition: border-color 0.3s ease;
+  font-weight: 500;
+  resize: vertical;
+  min-height: 40px;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  border-color: #64b5f6;
+  outline: none;
+  background-color: #2e2e41;
+}
+
+.form-group textarea {
+  min-height: 80px;
+}
+
+/* Form Actions (Buttons Container) */
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.cancel-btn {
+  background-color: #2a2a2a;
+  color: #f0f0f0;
+  border: 1px solid #5d85b3;
+  border-radius: 8px;
+  padding: 12px 28px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+}
+
+.cancel-btn:hover {
+  border-color: #9b5ea8;
+  color: #9b5ea8;
+}
+
+.submit-btn {
+  background-color: #5d85b3;
+  color: #fff;
+  border-radius: 8px;
+  padding: 12px 28px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 6px 18px rgba(93, 133, 179, 0.5);
+}
+
+.submit-btn:hover {
+  background-color: #9b5ea8;
+  box-shadow: 0 8px 22px rgba(155, 94, 168, 0.8);
+  transform: translateY(-2px);
+}
+
+/* Hata mesajı */
+.error {
+  color: #ff6b6b;
+  margin-top: 10px;
+  font-weight: 600;
+}
+
+/* Logout Button */
+.logout-container {
+  position: fixed;
+  top: 15px;
+  right: 20px;
+  z-index: 1001;
+}
+
+.logout-button {
+  background-color: #1a1a1a;
+  color: #f0f0f0;
+  border: 2px solid #5d85b3;
+  padding: 8px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: all 0.3s ease;
+}
+
+.logout-button:hover {
+  background-color: #9b5ea8;
+  border-color: #9b5ea8;
+}
+
+/* Login Form */
+.login-container {
+  background: #121212;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.login-form {
+  width: 100%;
+  max-width: 360px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  padding: 25px;
+  background-color: #1a1a1a;
+  border-radius: 8px;
+  border: 1px solid #5d85b3;
+  box-shadow: 0 5px 15px rgba(93, 133, 179, 0.3);
+}
+
+.login-title {
+  text-align: center;
+  color: #5d85b3;
+  margin: 0 0 15px;
+}
+
+.login-input,
+.login-button {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.login-input {
+  height: 44px;
+  padding: 0 12px;
+  font-size: 15px;
+  border: 1px solid #333;
+  border-radius: 6px;
+  background: #1e1e1e;
+  color: #f0f0f0;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+.login-input:focus {
+  border-color: #5d85b3;
+  box-shadow: 0 0 0 2px rgba(93, 133, 179, 0.2);
+}
+
+.login-button {
+  height: 44px;
+  font-size: 15px;
+  font-weight: 600;
+  border: none;
+  border-radius: 6px;
+  background-color: #5d85b3;
+  color: #fff;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 0;
+}
+
+.login-button:hover {
+  background-color: #9b5ea8;
+  transform: translateY(0);
+}
+
+.login-error {
+  color: #ff6b6b;
+  font-size: 14px;
+  text-align: center;
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+  .main-content {
+    padding: 15px;
+  }
+
+  .anasayfa-grid {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .sidebar {
+    width: 80vw;
+  }
+
+  .login-form {
+    max-width: 90vw;
+    padding: 20px;
+  }
+
+  .anasayfa-card {
+    width: 100%;
+    max-width: 300px;
+  }
+
+  .modal-content {
+    padding: 10px 5px;
+    font-size: 0.95rem;
+  }
+
+  .customer-table th,
+  .customer-table td {
+    padding: 8px 10px;
+  }
+}
+
+/* Modal Overlay (küçük ekranlar) */
+@media (max-width: 400px) {
+  .sidebar {
+    width: 95vw;
+    padding: 10px;
+  }
+
+  .modal-content {
+    padding: 8px 3px;
+    font-size: 0.92rem;
+  }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #1a1a1a;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #5d85b3;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #9b5ea8;
+}
+
+.arama-kayitlari-container {
+  max-width: 900px;
+  margin: 40px auto;
+  padding: 32px;
+  background: #18181c;
+  color: #fff;
+  border-radius: 18px;
+  box-shadow: 0 0 24px #0005;
+}
+
+.arama-kayitlari-container h1 {
+  font-size: 2.3rem;
+  margin-bottom: 22px;
+  font-weight: 700;
+  letter-spacing: -1px;
+}
+
+.calls-table-container {
+  overflow-x: auto;
+  margin-top: 8px;
+}
+
+.calls-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0 7px;
+  min-width: 650px;
+}
+
+.calls-table thead tr {
+  background: #21212b;
+}
+
+.calls-table th,
+.calls-table td {
+  padding: 12px 16px;
+  text-align: left;
+  font-size: 1.06rem;
+}
+
+.calls-table th {
+  font-weight: 700;
+  border-bottom: 2px solid #222;
+  color: #e1e1e6;
+}
+
+.calls-table tbody tr {
+  background: #23232f;
+  transition: box-shadow 0.2s, background 0.18s;
+  border-radius: 7px;
+}
+
+.calls-table tbody tr:hover {
+  background: #25254d;
+  box-shadow: 0 0 8px #4446;
+}
+
+.calls-table td {
+  border-top: 1px solid #252545;
+}
+
+@media (max-width: 700px) {
+  .arama-kayitlari-container {
+    padding: 5vw 1vw;
+  }
+
+  .calls-table th,
+  .calls-table td {
+    padding: 7px 4px;
+    font-size: 0.97rem;
+  }
+
+  .calls-table {
+    min-width: 480px;
+  }
+}
+
+/* Home Page */
+.anasayfa-container {
+  text-align: center;
+  padding: 40px 20px;
+  background-color: #121212;
+  min-height: 100vh;
+  color: #f0f0f0;
+}
+
+.anasayfa-heading {
+  font-size: 28px;
+  margin-bottom: 10px;
+  color: #5d85b3;
+}
+
+.anasayfa-email {
+  font-size: 18px;
+  color: #5d85b3;
+}
+
+.anasayfa-subtext {
+  margin-bottom: 30px;
+  color: #aaa;
+}
+
+.anasayfa-grid {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.anasayfa-card {
+  background-color: #1a1a1a;
+  padding: 20px;
+  border-radius: 10px;
+  width: 200px;
+  border-top: 3px solid #5d85b3;
+  transition: all 0.3s ease;
+  color: #e0e0e0;
+}
+
+.anasayfa-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 5px 15px rgba(155, 94, 168, 0.3);
+  border-top-color: #9b5ea8;
+}
+
+.anasayfa-card-title {
+  margin-bottom: 10px;
+  color: #e0e0e0;
+}
+
+.anasayfa-number {
+  font-size: 30px;
+  font-weight: bold;
+  color: #5d85b3;
+}
+
+/* Responsive adjustments for smaller screens */
+@media (max-width: 600px) {
+  .anasayfa-grid {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .anasayfa-card {
+    width: 100%;
+    max-width: 300px;
+  }
+}
