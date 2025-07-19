@@ -5,7 +5,6 @@
 [![React](https://img.shields.io/badge/React-19.1.0-blue.svg)](https://reactjs.org/)
 [![PostgreSQL](https://img.shields.io/badge/PostgreSQL-13+-blue.svg)](https://www.postgresql.org/)
 [![JWT](https://img.shields.io/badge/JWT-Authentication-yellow.svg)](https://jwt.io/)
-[![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 
 > **A comprehensive call center management system with real-time analytics, customer relationship management, and advanced reporting capabilities.**
 
